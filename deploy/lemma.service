@@ -1,0 +1,23 @@
+[Unit]
+Description=Lemma 2.81 demo
+After=network.target
+
+[Service]
+Type=simple
+User=opc
+Group=opc
+WorkingDirectory=/srv/lemma
+Environment=LEMMA_BASE=/lemma/
+ExecStart=/usr/bin/php -S 127.0.0.1:8115 -t showroom showroom/index.php
+Restart=on-failure
+RestartSec=2
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/lemma
+MemoryDenyWriteExecute=false
+
+[Install]
+WantedBy=multi-user.target
